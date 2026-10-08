@@ -1,0 +1,219 @@
+# French translations for xfce4-claude-usage-plugin package
+# Traductions françaises du paquet xfce4-claude-usage-plugin.
+# Copyright (C) 2026 Alexandre Fournier
+# This file is distributed under the same license as the xfce4-claude-usage-plugin package.
+# Alexandre Fournier <me@alexandrefournier.com>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: xfce4-claude-usage-plugin\n"
+"Report-Msgid-Bugs-To: https://github.com/AlexandreFournier/xfce4-claude-"
+"usage-plugin/issues\n"
+"POT-Creation-Date: 2026-10-08 14:01+0200\n"
+"PO-Revision-Date: 2026-10-08 11:40+0200\n"
+"Last-Translator: Alexandre Fournier <me@alexandrefournier.com>\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: data/claude-usage.desktop.in:4 src/plugin.c:791
+msgid "Usage Monitor for Claude"
+msgstr "Moniteur d'usage pour Claude"
+
+#: data/claude-usage.desktop.in:5
+msgid "Shows Claude subscription usage and token consumption"
+msgstr "Affiche l'usage de l'abonnement Claude et la consommation de tokens"
+
+#. TRANSLATORS: time left before reset, in minutes (e.g. "42m")
+#: src/bars.c:35
+#, c-format
+msgid "%dm"
+msgstr "%dm"
+
+#. TRANSLATORS: time left before reset, hours and minutes (e.g. "2h13")
+#: src/bars.c:38
+#, c-format
+msgid "%dh%02d"
+msgstr "%dh%02d"
+
+#. TRANSLATORS: time left before reset, days and hours (e.g. "3d 4h")
+#: src/bars.c:40
+#, c-format
+msgid "%dd %dh"
+msgstr "%dj %dh"
+
+#: src/launcher.c:60
+#, c-format
+msgid "Claude Desktop not found"
+msgstr "Claude Desktop introuvable"
+
+#: src/launcher.c:74
+#, c-format
+msgid "No command set"
+msgstr "Aucune commande définie"
+
+#: src/plugin.c:101
+msgid "No token — log in with claude"
+msgstr "Pas de jeton — connectez-vous avec claude"
+
+#: src/plugin.c:102
+msgid "Token expired — run claude"
+msgstr "Jeton expiré — lancez claude"
+
+#: src/plugin.c:103
+msgid "Network error"
+msgstr "Erreur réseau"
+
+#: src/plugin.c:104
+msgid "Unreadable response"
+msgstr "Réponse illisible"
+
+#: src/plugin.c:170
+#, c-format
+msgid "%.0f %%"
+msgstr "%.0f %%"
+
+#: src/plugin.c:179
+msgid "Current session"
+msgstr "Session en cours"
+
+#: src/plugin.c:181
+msgid "This week"
+msgstr "Cette semaine"
+
+#: src/plugin.c:183
+#, c-format
+msgid "%s this week"
+msgstr "%s cette semaine"
+
+#: src/plugin.c:184
+msgid "Model limit this week"
+msgstr "Limite du modèle cette semaine"
+
+#: src/plugin.c:242
+#, c-format
+msgid "Resets %s"
+msgstr "Reset %s"
+
+#: src/plugin.c:258
+msgid "This week's usage by product"
+msgstr "Usage de la semaine par produit"
+
+#: src/plugin.c:270
+msgid "Today"
+msgstr "Aujourd'hui"
+
+#: src/plugin.c:270
+msgid "7 days"
+msgstr "7 jours"
+
+#: src/plugin.c:270
+msgid "30 days"
+msgstr "30 jours"
+
+#: src/plugin.c:274
+msgid "Local usage"
+msgstr "Consommation locale"
+
+#: src/plugin.c:275
+msgid "API price estimate"
+msgstr "estimation au tarif API"
+
+#: src/plugin.c:278
+msgid "Computing local statistics…"
+msgstr "Calcul des statistiques locales…"
+
+#: src/plugin.c:284
+#, c-format
+msgid "%s tokens"
+msgstr "%s tokens"
+
+#: src/plugin.c:311
+msgid "Updated less than a minute ago"
+msgstr "Mis à jour il y a moins d'une minute"
+
+#: src/plugin.c:312
+#, c-format
+msgid "Updated %d minute ago"
+msgid_plural "Updated %d minutes ago"
+msgstr[0] "Mis à jour il y a %d minute"
+msgstr[1] "Mis à jour il y a %d minutes"
+
+#: src/plugin.c:333
+msgid "Your usage"
+msgstr "Votre usage"
+
+#: src/plugin.c:350
+msgid "Loading…"
+msgstr "Chargement…"
+
+#. TRANSLATORS: short bar label for the 5-hour window
+#: src/plugin.c:536
+msgid "5h"
+msgstr "5h"
+
+#. TRANSLATORS: short bar label for the 7-day window
+#: src/plugin.c:539
+msgid "7d"
+msgstr "7j"
+
+#: src/plugin.c:756
+msgid "Left click action:"
+msgstr "Action du clic gauche :"
+
+#: src/plugin.c:758
+msgid "Command:"
+msgstr "Commande :"
+
+#. même ordre que ClickAction
+#: src/plugin.c:762
+msgid "Open claude.ai"
+msgstr "Ouvrir claude.ai"
+
+#: src/plugin.c:763
+msgid "Open Claude Desktop"
+msgstr "Ouvrir Claude Desktop"
+
+#: src/plugin.c:764
+msgid "Run a custom command"
+msgstr "Lancer une commande personnalisée"
+
+#: src/plugin.c:792
+msgid "_Close"
+msgstr "_Fermer"
+
+#: src/plugin.c:799
+msgid "Refresh interval (seconds):"
+msgstr "Rafraîchissement (secondes) :"
+
+#: src/plugin.c:801
+msgid "Bar width (px, 0 = auto):"
+msgstr "Largeur des barres (px, 0 = auto) :"
+
+#: src/plugin.c:803
+msgid "Bar height (px, 0 = auto):"
+msgstr "Hauteur d'une barre (px, 0 = auto) :"
+
+#: src/plugin.c:809
+msgid "Show percentages"
+msgstr "Afficher les pourcentages"
+
+#: src/plugin.c:811
+msgid "Show labels (5h / 7d)"
+msgstr "Afficher les labels (5h / 7j)"
+
+#: src/plugin.c:813
+msgid "Show time left before reset"
+msgstr "Afficher le temps restant avant reset"
+
+#: src/usage-api.c:245
+#, c-format
+msgid "unexpected response"
+msgstr "réponse inattendue"
+
+#: src/usage-api.c:371
+msgid "Token rejected (401) — run claude"
+msgstr "Jeton refusé (401) — lancez claude"

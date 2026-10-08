@@ -1,0 +1,9 @@
+[Xfce Panel]
+Type=X-XFCE-PanelPlugin
+Encoding=UTF-8
+Name=Usage Monitor for Claude
+Comment=Shows Claude subscription usage and token consumption
+Icon=xfce4-claude-usage-plugin
+X-XFCE-Module=claude-usage
+X-XFCE-Internal=false
+X-XFCE-API=2.0

@@ -1,0 +1,5 @@
+data/claude-usage.desktop.in
+src/bars.c
+src/launcher.c
+src/plugin.c
+src/usage-api.c

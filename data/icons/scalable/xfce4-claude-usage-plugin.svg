@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13 13" shape-rendering="crispEdges">
+  <title>xfce4-claude-usage-plugin</title>
+  <g fill="#D97757">
+    <rect x="4" y="2.5" width="1" height="1"/>
+    <rect x="8" y="2.5" width="1" height="1"/>
+    <rect x="3" y="3.5" width="7" height="1"/>
+    <rect x="3" y="4.5" width="7" height="1"/>
+    <rect x="3" y="5.5" width="1" height="1"/>
+    <rect x="5" y="5.5" width="3" height="1"/>
+    <rect x="9" y="5.5" width="1" height="1"/>
+    <rect x="1" y="6.5" width="11" height="1"/>
+    <rect x="1" y="7.5" width="1" height="1"/>
+    <rect x="3" y="7.5" width="7" height="1"/>
+    <rect x="11" y="7.5" width="1" height="1"/>
+    <rect x="3" y="8.5" width="2" height="1"/>
+    <rect x="8" y="8.5" width="2" height="1"/>
+    <rect x="3" y="9.5" width="2" height="1"/>
+    <rect x="8" y="9.5" width="2" height="1"/>
+  </g>
+</svg>
