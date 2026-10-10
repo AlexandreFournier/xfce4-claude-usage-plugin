@@ -1,5 +1,5 @@
 project('xfce4-claude-usage-plugin', 'c',
-  version: '0.1.0',
+  version: '0.1.1',
   license: 'GPL-2.0-or-later',
   meson_version: '>= 0.60',
   default_options: ['warning_level=2', 'c_std=gnu11'])

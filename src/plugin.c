@@ -884,7 +884,7 @@ claude_construct (XfcePanelPlugin *plugin)
   claude_usage_init (&cp->usage);
   load_config (cp);
 
-  cp->session = soup_session_new_with_options ("user-agent", "xfce4-claude-usage-plugin/0.1",
+  cp->session = soup_session_new_with_options ("user-agent", "xfce4-claude-usage-plugin/0.1.1",
                                                "timeout", 20, NULL);
   dir = g_build_filename (g_get_home_dir (), ".claude", "projects", NULL);
   cp->stats_cache = local_stats_cache_new (dir);
