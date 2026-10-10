@@ -359,8 +359,9 @@ on_fetch_done (GObject *source, GAsyncResult *res, gpointer data)
 
   if (body == NULL)
     {
-      if (!g_error_matches (err, G_IO_ERROR, G_IO_ERROR_CANCELLED))
-        ctx->cb (USAGE_ERR_HTTP, NULL, err->message, ctx->user_data);
+      /* Toujours appeler le callback, annulation comprise : l'appelant
+         compte dessus pour savoir que la requête est terminée */
+      ctx->cb (USAGE_ERR_HTTP, NULL, err->message, ctx->user_data);
       g_error_free (err);
     }
   else

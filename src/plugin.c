@@ -9,6 +9,9 @@
 #define DEFAULT_INTERVAL 300
 #define MIN_INTERVAL 60
 #define MAX_INTERVAL 3600
+/* Au-delà, la requête est annulée : libsoup peut ne jamais la terminer si le
+   réseau tombe en cours de route, malgré son propre timeout */
+#define FETCH_WATCHDOG 30
 #define MAX_BAR_WIDTH 400
 #define MIN_BAR_WIDTH 20
 #define MAX_BAR_HEIGHT 40
@@ -30,6 +33,8 @@ typedef struct {
   gboolean have_stats;
   gboolean stats_busy;
   gboolean fetch_busy;
+  GCancellable *fetch_cancel; /* requête en vol, NULL sinon */
+  guint fetch_watchdog_id;
   gboolean dead;
 
   gint interval;
@@ -402,6 +407,12 @@ on_fetch_cb (UsageStatus status, const ClaudeUsage *usage, const gchar *message,
   ClaudePlugin *cp = data;
 
   cp->fetch_busy = FALSE;
+  g_clear_object (&cp->fetch_cancel);
+  if (cp->fetch_watchdog_id != 0)
+    {
+      g_source_remove (cp->fetch_watchdog_id);
+      cp->fetch_watchdog_id = 0;
+    }
   if (cp->dead)
     {
       if (!cp->stats_busy)
@@ -409,6 +420,17 @@ on_fetch_cb (UsageStatus status, const ClaudeUsage *usage, const gchar *message,
       return;
     }
   on_usage (status, usage, message, cp);
+}
+
+static gboolean
+on_fetch_watchdog (gpointer data)
+{
+  ClaudePlugin *cp = data;
+
+  cp->fetch_watchdog_id = 0;
+  /* on_fetch_cb sera appelé avec l'erreur d'annulation */
+  g_cancellable_cancel (cp->fetch_cancel);
+  return G_SOURCE_REMOVE;
 }
 
 static void
@@ -460,7 +482,9 @@ refresh (ClaudePlugin *cp)
       if (!cp->fetch_busy)
         {
           cp->fetch_busy = TRUE;
-          usage_fetch_async (cp->session, token, NULL, on_fetch_cb, cp);
+          cp->fetch_cancel = g_cancellable_new ();
+          cp->fetch_watchdog_id = g_timeout_add_seconds (FETCH_WATCHDOG, on_fetch_watchdog, cp);
+          usage_fetch_async (cp->session, token, cp->fetch_cancel, on_fetch_cb, cp);
         }
       g_free (token);
     }
@@ -831,9 +855,10 @@ on_free_data (XfcePanelPlugin *plugin, ClaudePlugin *cp)
     g_source_remove (cp->timer_id);
   if (cp->live_timer_id != 0)
     g_source_remove (cp->live_timer_id);
-  /* Pas d'annulation : usage_fetch_async n'appelle pas le callback sur
-     * annulation, alors fetch_busy ne serait jamais remis à FALSE. La requête
-     * (timeout 20 s) se termine et on_fetch_cb libère cp. */
+  /* La requête en vol est annulée ; on_fetch_cb est quand même appelé et
+     libère cp s'il est le dernier */
+  if (cp->fetch_cancel != NULL)
+    g_cancellable_cancel (cp->fetch_cancel);
   if (cp->dialog != NULL)
     {
       g_signal_handlers_disconnect_by_data (cp->dialog, cp);

@@ -259,6 +259,35 @@ test_plan_label (void)
   g_assert_null (usage_read_plan ("/nonexistent/creds.json"));
 }
 
+static void
+on_cancelled_cb (UsageStatus status, const ClaudeUsage *usage, const gchar *message, gpointer data)
+{
+  gint *calls = data;
+
+  g_assert_cmpint (status, ==, USAGE_ERR_HTTP);
+  g_assert_null (usage);
+  g_assert_nonnull (message);
+  (*calls)++;
+}
+
+/* Le callback doit être appelé même sur annulation : sinon fetch_busy reste
+   bloqué et le plugin cesse de se mettre à jour */
+static void
+test_fetch_cancelled (void)
+{
+  SoupSession *session = soup_session_new ();
+  GCancellable *cancel = g_cancellable_new ();
+  gint calls = 0;
+
+  g_cancellable_cancel (cancel);
+  usage_fetch_async (session, "token", cancel, on_cancelled_cb, &calls);
+  while (calls == 0)
+    g_main_context_iteration (NULL, TRUE);
+  g_assert_cmpint (calls, ==, 1);
+  g_object_unref (cancel);
+  g_object_unref (session);
+}
+
 int
 main (int argc, char **argv)
 {
@@ -274,5 +303,6 @@ main (int argc, char **argv)
   g_test_add_func ("/usage/bars-from-limits", test_bars_from_limits);
   g_test_add_func ("/usage/copy-deep", test_copy_deep);
   g_test_add_func ("/usage/plan-label", test_plan_label);
+  g_test_add_func ("/usage/fetch-cancelled", test_fetch_cancelled);
   return g_test_run ();
 }
